@@ -2,26 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Looping Video</title>
+  <title>Looping Video with Scroll and Text</title>
   <style>
-    /* Make the video cover the whole screen */
     body, html {
       margin: 0;
       padding: 0;
-      height: 100%;
-      overflow: hidden;
+      height: 200vh; /* Allows scrolling */
+      font-family: sans-serif;
+      overflow-x: hidden;
     }
+
     video {
-      position: absolute;
+      position: fixed;
       top: 50%;
       left: 50%;
       min-width: 100%;
       min-height: 100%;
       width: auto;
       height: auto;
-      z-index: -1;
       transform: translate(-50%, -50%);
       object-fit: cover;
+      z-index: -1;
+    }
+
+    .textbox {
+      position: fixed;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 80%;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 10;
+    }
+
+    .textbox.visible {
+      opacity: 1;
+    }
+
+    .spacer {
+      height: 100vh;
     }
   </style>
 </head>
@@ -31,6 +56,25 @@
     <source src="your-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
+
+  <div class="textbox" id="textbox">
+    <h2>You've scrolled down!</h2>
+    <p>This is some extra content that appears when you scroll.</p>
+  </div>
+
+  <div class="spacer"></div>
+
+  <script>
+    window.addEventListener('scroll', function () {
+      const textbox = document.getElementById('textbox');
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      if (scrollY > window.innerHeight / 2) {
+        textbox.classList.add('visible');
+      } else {
+        textbox.classList.remove('visible');
+      }
+    });
+  </script>
 
 </body>
 </html>
