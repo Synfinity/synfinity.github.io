@@ -10,7 +10,15 @@
       height: 200vh; /* Allows scrolling */
       font-family: sans-serif;
       overflow-x: hidden;
-    }
+	  scroll-behavior: smooth;
+}
+
+	.topcenter {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	}
 
     video {
       position: fixed;
@@ -22,12 +30,19 @@
       height: auto;
       transform: translate(-50%, -50%);
       object-fit: cover;
+	  opacity: 1;
+      transition: opacity 1s ease;
       z-index: -1;
+      background-color:black;
+}
+
+	video.visible {
+      opacity: 1;
     }
 
     .textbox {
       position: fixed;
-      bottom: 20%;
+      bottom: -10%;
       left: 50%;
       transform: translateX(-50%);
       background-color: rgba(0, 0, 0, 0.8);
@@ -39,6 +54,10 @@
       opacity: 0;
       transition: opacity 1s ease;
       z-index: 10;
+	  min-width: 100%;
+      min-height: 50%;
+      width: auto;
+      height: auto;
     }
 
     .textbox.visible {
@@ -46,20 +65,33 @@
     }
 
     .spacer {
-      height: 100vh;
+      height: 20vh;
     }
   </style>
 </head>
 <body>
 
   <video autoplay muted loop playsinline>
-    <source src="your-video.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+    <source src="your-video.mp4" type="video/mp4" id="vid1">
+    Your browser does not support the video tag :(\
   </video>
 
+  <img 
+	src="igorrrlogo.png" 
+	alt="Igorrr Logo" 
+	width="1000" 
+	height="390"
+	class="topcenter";
+	id = "igorrrlogo";
+  >
+
   <div class="textbox" id="textbox">
-    <h2>You've scrolled down!</h2>
-    <p>This is some extra content that appears when you scroll.</p>
+    <h2>Igorrr - Moisissure (2007) [$250]</h2>
+    <p>Currently the only copy for sale on the internet. <br> 
+	Originally printed a long time ago as a 2xLP disc with Poisson Soluble <br>
+	Found in a record store locally.
+	</p>
+	<a href="https://discord.gg/gpYeg5Xgy9">[PURCHASE NOW.]</a>
   </div>
 
   <div class="spacer"></div>
@@ -67,13 +99,21 @@
   <script>
     window.addEventListener('scroll', function () {
       const textbox = document.getElementById('textbox');
+      const bgvid = document.getElementById('igorrrlogo');
+	  
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       if (scrollY > window.innerHeight / 2) {
         textbox.classList.add('visible');
+        bgvid.classList.add('visible');
       } else {
         textbox.classList.remove('visible');
-      }
+        bgvid.classList.remove('visible');
+ }
     });
+	
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0);
+	}
   </script>
 
 </body>
