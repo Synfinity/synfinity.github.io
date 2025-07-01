@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Rarity Records - Homepage</title>
+  <title>Rarity Records - WU&IO</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
     body, html {
@@ -17,9 +17,18 @@
 	.topcenter {
 		display: block;
 		margin-left: auto;
+		left: 25%;
 		margin-right: auto;
 		width: 50%;
+	    top: -10%;
+		position: fixed;
+		opacity: 1;
+        transition: opacity 0.5s ease;
 	}
+
+	.topcenter.visible {
+      opacity: 0;
+    }
 
     video {
       position: fixed;
@@ -32,7 +41,7 @@
       transform: translate(-50%, -50%);
       object-fit: cover;
 	  opacity: 1;
-      transition: opacity 1s ease;
+      transition: opacity 0.5s ease;
       z-index: -1;
       background-color:black;
 }
@@ -73,7 +82,7 @@
 <body>
 
   <video autoplay muted loop playsinline>
-    <source src="your-video.mp4" type="video/mp4" id="vid1">
+    <source src="recordspin.mp4" type="video/mp4" id="vid1">
     Your browser does not support the video tag :(\
   </video>
 
@@ -83,7 +92,7 @@
 	width="1000" 
 	height="390"
 	class="topcenter";
-	id = "igorrrlogo";
+	id = "Bandname";
   >
 
   <div class="textbox" id="textbox">
@@ -100,15 +109,15 @@
   <script>
     window.addEventListener('scroll', function () {
       const textbox = document.getElementById('textbox');
-      const bgvid = document.getElementById('igorrrlogo');
+      const topcenter = document.getElementById('Bandname');
 	  
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       if (scrollY > window.innerHeight / 2) {
         textbox.classList.add('visible');
-        bgvid.classList.add('visible');
+        topcenter.classList.add('visible');
       } else {
         textbox.classList.remove('visible');
-        bgvid.classList.remove('visible');
+        topcenter.classList.remove('visible');
  }
     });
 	
